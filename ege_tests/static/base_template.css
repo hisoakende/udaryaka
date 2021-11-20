@@ -1,0 +1,20 @@
+body {
+    background-color: #fafaf0;
+}
+
+.row {
+    width: 100%;
+}
+
+.navbar {
+    background-color: #52796f;
+}
+
+.nav-link {
+    margin: 0 15px 0 15px;
+    color: #f6f6ea;
+}
+
+.nav-link:hover {
+    color: white;
+}

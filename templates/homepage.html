@@ -1,0 +1,16 @@
+{% extends 'base_template.html' %}
+{% load static %}
+{% block title %}Главная страница{% endblock %}
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'homepage.css' %}">{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-5 content">
+            <span class="hello">П</span><span>ривет! Ты попал на проект 'Ударяка',
+            с помощью него ты сможешь подготовиться к 4 заданию ЕГЭ
+            по русскому языку, в котором проверяют твое знание орфоэпических норм!</span>
+        </div>
+        <div class="col"></div>
+    </div>
+{% endblock %}

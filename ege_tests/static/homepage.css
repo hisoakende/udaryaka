@@ -1,0 +1,13 @@
+.content {
+    background-color: white;
+    margin: 20px 0 0 0;
+    padding-bottom: 9px;
+    border: #52796f solid 1px;
+    border-radius: 15px 15px 0 0;
+}
+
+.hello {
+    font-family: URW Chancery L, cursive;
+    font-size: 150%;
+    color: #52796f;
+}

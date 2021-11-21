@@ -1,0 +1,70 @@
+body {
+    background-color: #fafaf0;
+}
+
+.row {
+    width: 100%;
+}
+
+.navbar {
+    background-color: #52796f;
+}
+
+.nav-link {
+    margin: 0 15px 0 15px;
+    color: #f6f6ea;
+}
+
+.nav-link:hover {
+    color: white;
+}
+
+.main-part {
+    margin: 20px 0 0 0;
+}
+
+.main-part .col .row {
+    margin: 0 -10px 0 -10px;
+}
+
+.first-character {
+    font-family: URW Chancery L, cursive;
+    font-size: 150%;
+    color: #52796f;
+}
+
+.parts-of-speech {
+    text-align: center;
+    border-radius: 15px !important;
+    padding-bottom: 0 !important;
+}
+
+ul {
+    text-align: left;
+}
+
+li {
+    color: #52796f;
+}
+
+li a {
+    color: black !important;
+}
+
+li a:hover {
+    color: #52796f !important;
+}
+
+
+.content {
+    height: auto;
+    background-color: white;
+    border: #52796f solid 1px;
+    border-radius: 15px 15px 0 0;
+    padding-bottom: 15px;
+}
+
+.end-content {
+    border-radius: 15px !important;
+    margin-bottom: 20px;
+}

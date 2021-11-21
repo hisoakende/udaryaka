@@ -5,7 +5,7 @@
     {% load bootstrap4 %}
     {% bootstrap_css %}
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="{% static 'base_template.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     {% block css %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
@@ -14,14 +14,32 @@
     <div class="container-fluid">
         <div class="navbar-collapse">
             <div class="navbar-nav mx-auto">
-                <a class="nav-link" href="#">Главная</a>
-                <a class="nav-link" href="#">Вторая ссылка</a>
-                <a class="nav-link" href="#">Третья ссылка</a>
-                <a class="nav-link" href="#">Четвертая ссылка</a>
+                <a class="nav-link" href="*">Главная</a>
+                <a class="nav-link" href="*">Вторая ссылка</a>
+                <a class="nav-link" href="*">Третья ссылка</a>
+                <a class="nav-link" href="*">Четвертая ссылка</a>
             </div>
         </div>
     </div>
 </nav>
-{% block content %}{% endblock %}
+<div class="row main-part">
+    <div class="col">
+        <div class="row">
+            <div class="col"></div>
+            <div class="col-5 content parts-of-speech"><span class="first-character">С</span>лова по частям речи:
+                <ul>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'noun' %}">Имя сущесвтительное</a></li>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'adjective' %}">Имя прилагательное</a></li>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'verb' %}">Глагол</a></li>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'participle' %}">Причастие</a></li>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'gerunds' %}">Деепричастие</a></li>
+                    <li><a href="{% url 'words_by_parts_of_speech' 'adverb' %}">Наречие</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+    <div class="col"></div>
+</div>
 </body>
 </html>

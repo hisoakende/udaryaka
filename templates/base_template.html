@@ -14,7 +14,7 @@
     <div class="container-fluid">
         <div class="navbar-collapse">
             <div class="navbar-nav mx-auto">
-                <a class="nav-link" href="*">Главная</a>
+                <a class="nav-link" href="{% url 'homepage' %}">Главная</a>
                 <a class="nav-link" href="*">Вторая ссылка</a>
                 <a class="nav-link" href="*">Третья ссылка</a>
                 <a class="nav-link" href="*">Четвертая ссылка</a>
@@ -41,5 +41,6 @@
     {% block content %}{% endblock %}
     <div class="col"></div>
 </div>
+{% block js %}{% endblock %}
 </body>
 </html>

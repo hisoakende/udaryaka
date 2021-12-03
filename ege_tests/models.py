@@ -1,4 +1,13 @@
+import random
+
 from django.db import models
+
+
+class WordFromDictionaryManager(models.Manager):
+    """Менеджер модели 'WordFromDictionary'"""
+
+    def random(self, number_of_required=1):
+        return random.choices(self.all(), k=number_of_required)
 
 
 class WordFromDictionary(models.Model):
@@ -15,6 +24,7 @@ class WordFromDictionary(models.Model):
     word = models.CharField(verbose_name='Слово', max_length=50)
     accented_character = models.IntegerField(verbose_name='Буква под ударением (по счету)')
     part_of_speech = models.CharField(verbose_name='Часть речи', max_length=10, choices=PART_OF_SPEECH)
+    objects = WordFromDictionaryManager()
 
     class Meta:
         ordering = ['word']

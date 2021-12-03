@@ -1,10 +1,29 @@
 {% extends 'base_template.html' %}
+{% load static %}
 {% block title %}Главная страница{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'test_with_questions.css' %}">{% endblock %}
 {% block content %}
-    <div class="col-4 content">
-        <span class="first-character">П</span><span>ривет! Ты попал на проект 'Ударяка',
-            с помощью него ты сможешь подготовиться к 4 заданию ЕГЭ
-            по русскому языку, в котором проверяют твое знание орфоэпических норм!
-        </span>
+    <div class="col-4">
+        <div class="row">
+            <div class="col content start-content">
+                <span class="first-character">П</span><span>ривет! Ты попал на проект 'Ударяка',
+                с помощью него ты сможешь подготовиться к 4 заданию ЕГЭ
+                по русскому языку, в котором проверяют твое знание орфоэпических норм!
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col content end-content">
+                <span class="first-character">Т</span><span>ы можешь пройти быстрый тест на ударения,
+                состоящий всего из 10 вопросов!
+                </span>
+                <hr class="first-hr-from-test">
+                <form>
+                    <span class="task"><span class="first-character">В</span>ыберете верные ударения:</span>
+                </form>
+            </div>
+        </div>
     </div>
 {% endblock %}
+{% block js %}<script src="{% static 'homepage.js' %}"></script>{% endblock %}

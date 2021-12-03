@@ -1,13 +1,22 @@
 from django.http import HttpResponse
 from django.views.generic import TemplateView, ListView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-from ege_tests.models import *
+from ege_tests.models import WordFromDictionary
 from ege_tests.utils import *
 
 
 class Homepage(TemplateView):
     """Отображение главной страницы"""
     template_name = 'homepage.html'
+
+
+class RandomTestAPI(APIView):
+    """Обработка запроса на получение слов для случайного теста"""
+
+    def get(self, request):
+        return Response(get_random_test())
 
 
 class AllWordsByPartOfSpeech(ListView):
@@ -24,6 +33,7 @@ class AllWordsByPartOfSpeech(ListView):
 
     def get_queryset(self):
         words = WordFromDictionary.objects.filter(part_of_speech=self.kwargs['part_of_speech'])
+        print(get_random_test())
         for x in words:
             index = x.accented_character - 1
             x.word = x.word[:index] + x.word[index].upper() + x.word[index + 1:]

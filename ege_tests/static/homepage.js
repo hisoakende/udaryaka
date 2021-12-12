@@ -32,30 +32,14 @@ function create_test(words) {
 }
 
 
-function start_first_test() {
+function start_test() {
     row_for_anim.classList.remove('display-none');
     btn_start_test.parentElement.classList.remove('end-content');
     btn_start_test.innerHTML = 'Пройти другой тест';
     // Анимация прозрачности не проигрывается без setTimeout, и почему так происходит - для меня загадка
-    setTimeout(() => {row_for_anim.style.opacity = '1'}, 1);
+    setTimeout(() => {
+        row_for_anim.style.opacity = '1'
+    }, 1);
 }
 
-
-function start_another_test() {
-    document.querySelector('.mask').style.top  = '0';
-}
-
-
-function manage_test() {
-    switch (btn_start_test.innerHTML.trim()) {
-        case 'Пройти тест!':
-            start_first_test();
-            break
-        case 'Пройти другой тест':
-            start_another_test();
-            break
-    }
-}
-
-
-btn_start_test.addEventListener('click', manage_test)
+btn_start_test.addEventListener('click', start_test)

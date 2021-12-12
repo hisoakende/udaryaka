@@ -6,11 +6,18 @@ hr {
     background-color: #52796f;
 }
 
+span {
+    position: relative;
+    z-index: 3;
+}
+
 button {
     width: 100%;
     color: #52796f !important;
     border-color: #52796f !important;
     margin-top: 10px;
+    position: relative;
+    z-index: 3;
 }
 
 button:hover {
@@ -91,4 +98,29 @@ li a:hover {
 .end-content {
     border-radius: 0 0 15px 15px;
     margin-bottom: 20px;
+}
+
+.question {
+    position: relative;
+    z-index: 1;
+}
+
+.display-none {
+    display: none;
+}
+
+#row-for-anim {
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.mask {
+    z-index: 2;
+    background-color: white;
+    position: absolute;
+    right: 15px;
+    left: 15px;
+    top: 100%;
+    bottom: 0;
+    transition: 1s ease;
 }

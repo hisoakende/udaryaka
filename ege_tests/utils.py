@@ -25,5 +25,4 @@ def get_random_test(number_of_required=10):
                 possible_values.append(word.word[:char_i] + word.word[char_i].upper() + word.word[char_i+1:])
         words_api[index] = {'possible_values': possible_values, 'correct_value': correct_value}
         index += 1
-    print(words_api)
     return words_api

@@ -11,9 +11,9 @@ def get_part_of_speech_ru_plural(p):
 
 
 def get_random_test(number_of_required=10):
-    """Возвращает слова для случайного тест для API"""
+    """Возвращает слова для случайного теста для API"""
     words = WordFromDictionary.objects.random(number_of_required)
-    result = dict()
+    words_api = dict()
     index = 0
     for word in words:
         possible_values = []
@@ -23,6 +23,7 @@ def get_random_test(number_of_required=10):
                 if char_i == word.accented_character - 1:
                     correct_value = len(possible_values)
                 possible_values.append(word.word[:char_i] + word.word[char_i].upper() + word.word[char_i+1:])
-        result[index] = {'possible_values': possible_values, 'correct_value': correct_value}
+        words_api[index] = {'possible_values': possible_values, 'correct_value': correct_value}
         index += 1
-    return result
+    print(words_api)
+    return words_api

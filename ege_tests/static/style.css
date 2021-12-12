@@ -6,8 +6,25 @@ hr {
     background-color: #52796f;
 }
 
-.row {
+button {
     width: 100%;
+    color: #52796f !important;
+    border-color: #52796f !important;
+    margin-top: 10px;
+}
+
+button:hover {
+    color: white !important;
+    background-color: #52796f !important;
+}
+
+button:focus, button:active {
+    box-shadow: none !important;
+    outline: 0 !important;
+}
+
+.row {
+    margin: 0;
 }
 
 .navbar {
@@ -55,7 +72,6 @@ li a:hover {
     color: #52796f !important;
 }
 
-
 .content {
     height: auto;
     background-color: white;
@@ -75,13 +91,4 @@ li a:hover {
 .end-content {
     border-radius: 0 0 15px 15px;
     margin-bottom: 20px;
-}
-
-.first-hr-from-test {
-    margin-bottom: 4px;
-}
-
-.task {
-    display: inline-block;
-    margin-bottom: 2px;
 }

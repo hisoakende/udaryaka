@@ -18,12 +18,22 @@
                 <span class="first-character">Т</span><span>ы можешь пройти быстрый тест на ударения,
                 состоящий всего из 10 вопросов!
                 </span>
-                <hr class="first-hr-from-test">
+                <button type="button" class="btn btn-outline-secondary">
+                    Пройти тест!
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col content end-content">
+                <span class="first-character">В</span><span>ыберете верные ударения:</span>
                 <form>
-                    <span class="task"><span class="first-character">В</span>ыберете верные ударения:</span>
                 </form>
+                <button type="button" class="btn btn-outline-secondary">
+                    Проверить ответы!
+                </button>
             </div>
         </div>
     </div>
 {% endblock %}
-{% block js %}<script src="{% static 'homepage.js' %}"></script>{% endblock %}
+{% block js %}
+    <script src="{% static 'homepage.js' %}"></script>{% endblock %}

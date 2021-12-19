@@ -44,7 +44,7 @@ button:focus, button:active {
     margin: 0 -10px 0 -10px;
 }
 
-.first-character {
+.big-signs {
     font-family: URW Chancery L, cursive;
     font-size: 150%;
     color: #52796f;
@@ -97,7 +97,15 @@ li a:hover {
     display: none;
 }
 
-#row-for-anim {
+.row-for-anim {
     opacity: 0;
     transition: opacity 0.5s ease-out;
+}
+
+.display-block {
+    display: block;
+}
+
+.align-center {
+    text-align: center;
 }

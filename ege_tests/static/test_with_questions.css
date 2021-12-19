@@ -54,3 +54,21 @@ label span:before {
     transition: 0.25s ease;
     box-shadow: inset 0 0 0 0.125em #52796f;
 }
+
+.incorrect-answer input + span {
+    background-color: #fce4e4;
+    cursor: default;
+}
+
+.incorrect-answer input + span:before {
+    box-shadow: inset 0 0 0 0.27em #a44848;
+}
+
+.correct-answer input + span {
+    background-color: #e1f6f0;
+    cursor: default;
+}
+
+.correct-answer input + span:before {
+    box-shadow: inset 0 0 0 0.27em #52796f;
+}

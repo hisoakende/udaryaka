@@ -7,33 +7,42 @@
     <div class="col-4">
         <div class="row">
             <div class="col content start-content">
-                <span class="first-character">П</span><span>ривет! Ты попал на проект 'Ударяка',
-                с помощью него ты сможешь подготовиться к 4 заданию ЕГЭ
-                по русскому языку, в котором проверяют твое знание орфоэпических норм!
+                <span>
+                    <span class="big-signs">П</span>ривет! Ты попал на проект 'Ударяка',
+                    с помощью него ты сможешь подготовиться к 4 заданию ЕГЭ
+                    по русскому языку, в котором проверяют твое знание орфоэпических норм!
                 </span>
             </div>
         </div>
         <div class="row">
             <div class="col content end-content">
-                <span class="first-character">Т</span><span>ы можешь пройти быстрый тест на ударения,
-                состоящий всего из 10 вопросов!
+                <span>
+                    <span class="big-signs">Т</span>ы можешь пройти быстрый тест на знание ударений,
+                    состоящий всего из 10 вопросов!
                 </span>
                 <button type="button" class="btn btn-outline-secondary" id="start-test">
                     Пройти тест!
                 </button>
             </div>
         </div>
-        <div class="row display-none" id="row-for-anim">
-            <div class="col content end-content">
-                <span class="first-character">В</span><span>ыберете верные ударения:</span>
+        <div class="row display-none row-for-anim">
+            <div class="col content">
+                <span>
+                    <span class="big-signs">В</span>ыберете верные ударения:
+                </span>
                 <form>
                 </form>
-                <button type="button" class="btn btn-outline-secondary">
+                <button type="button" class="btn btn-outline-secondary" id="check-answers" disabled>
                     Проверить ответы!
                 </button>
             </div>
         </div>
+        <div class="row row-for-anim align-center">
+            <div class="col content end-content">
+                <span class="big-signs display-block">Результат</span>
+                <span class="result">Ты еще не прошел тест!</span>
+            </div>
+        </div>
     </div>
 {% endblock %}
-{% block js %}
-    <script src="{% static 'homepage.js' %}"></script>{% endblock %}
+{% block js %}<script src="{% static 'homepage.js' %}"></script>{% endblock %}

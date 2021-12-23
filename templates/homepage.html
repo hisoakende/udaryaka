@@ -15,10 +15,37 @@
             </div>
         </div>
         <div class="row">
+            <div class="col content left-content">
+                <span>
+                    <span class="big-signs">У</span>
+                    тебя есть возможность создать собственный тест по ударениям, состоящий из любого количества слов.
+                    Слова ты можешь использовать либо собственные, либо из нашего каталога!
+                    {% if user_is_authenticated %}
+                        <a href="">Создать тест!</a>
+                    {% else %}
+                        Чтобы создать тест, нужно <a class="a-authenticated" href="">войти</a>
+                    {% endif %}
+                </span>
+            </div>
+            <div class="col content right-content">
+                <form>
+                    <label for="test-id">
+                        <span class="big-signs">Т</span>ы можешь пройти тест другого человека,
+                        просто вписав id теста в поле ниже:
+                    </label>
+                    <input type="number" class="form-control shadow-none enter-inf" id="test-id" name="test-id"
+                           placeholder="id теста">
+                    <button type="submit" class="btn btn-outline-secondary" id="find-test">
+                        Найти тест!
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
             <div class="col content end-content">
                 <span>
                     <span class="big-signs">Т</span>ы можешь пройти быстрый тест на знание ударений,
-                    состоящий всего из 10 вопросов!
+                    состоящий всего из 10 вопросов, который не будет учитываться в твоей статистике!
                 </span>
                 <button type="button" class="btn btn-outline-secondary" id="start-test">
                     Пройти тест!
@@ -45,4 +72,7 @@
         </div>
     </div>
 {% endblock %}
-{% block js %}<script src="{% static 'homepage.js' %}"></script>{% endblock %}
+{% block js %}
+    <script src="{% static 'homepage_manage_test.js' %}"></script>
+    <script src="{% static 'homepage_redirect_test.js' %}"></script>
+{% endblock %}

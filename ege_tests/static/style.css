@@ -73,7 +73,6 @@ li a:hover {
 }
 
 .content {
-    height: auto;
     background-color: white;
     border: #52796f solid 1px;
     padding-bottom: 15px;
@@ -88,6 +87,14 @@ li a:hover {
     border-radius: 15px !important;
 }
 
+.left-content {
+    margin-right: 10px;
+}
+
+.right-content {
+    margin-left: 10px;
+}
+
 .end-content {
     border-radius: 0 0 15px 15px;
     margin-bottom: 20px;
@@ -99,7 +106,7 @@ li a:hover {
 
 .row-for-anim {
     opacity: 0;
-    transition: opacity 0.5s ease-out;
+    transition: 0.5s ease-out;
 }
 
 .display-block {
@@ -108,4 +115,16 @@ li a:hover {
 
 .align-center {
     text-align: center;
+}
+
+.a-authenticated {
+    color: #52796f;
+}
+
+.a-authenticated:hover {
+    color: #52796f;
+}
+
+#test-id:focus {
+    border-color: #52796f;
 }

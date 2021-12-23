@@ -8,7 +8,7 @@ hr {
     width: 100%;
 }
 
-label {
+.question-label {
     display: flex;
     cursor: pointer;
     position: relative;
@@ -17,20 +17,20 @@ label {
     width: min-content;
 }
 
-label input {
+.question-label input {
     position: absolute;
     left: -9999px;
 }
 
-label input:checked + span {
+.question-label input:checked + span {
     background-color: #e1f6f0;
 }
 
-label input:checked + span:before {
+.question-label input:checked + span:before {
     box-shadow: inset 0 0 0 0.27em #52796f;
 }
 
-label span {
+.question-label span {
     display: flex;
     align-items: center;
     padding: 0.22em 0.45em 0.22em 0.22em;
@@ -38,11 +38,11 @@ label span {
     transition: 0.25s ease;
 }
 
-label span:hover {
+.question-label span:hover {
     background-color: #e1f6f0;
 }
 
-label span:before {
+.question-label span:before {
     display: flex;
     flex-shrink: 0;
     content: "";
@@ -56,19 +56,9 @@ label span:before {
 }
 
 .incorrect-answer input + span {
-    background-color: #fce4e4;
-    cursor: default;
+    background-color: #fce4e4 !important;
 }
 
 .incorrect-answer input + span:before {
-    box-shadow: inset 0 0 0 0.27em #a44848;
-}
-
-.correct-answer input + span {
-    background-color: #e1f6f0;
-    cursor: default;
-}
-
-.correct-answer input + span:before {
-    box-shadow: inset 0 0 0 0.27em #52796f;
+    box-shadow: inset 0 0 0 0.27em #a44848 !important;
 }

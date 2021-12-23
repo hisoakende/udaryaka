@@ -1,10 +1,11 @@
 import random
 
 from django.db import models
+from django.urls import reverse
 
 
 class WordFromDictionaryManager(models.Manager):
-    """Менеджер модели 'WordFromDictionary'"""
+    """Менеджер модели WordFromDictionary"""
 
     def random(self, number_of_required=1):
         return random.choices(self.all(), k=number_of_required)
@@ -33,3 +34,20 @@ class WordFromDictionary(models.Model):
 
     def __str__(self):
         return self.word
+
+
+class ConnectionTestAndWord(models.Model):
+    """Модель для привязки теста и слова для проверки ударения"""
+    test_id = models.IntegerField(verbose_name='id теста')
+    word = models.ForeignKey(WordFromDictionary, verbose_name='Слово для проверки', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ['test_id']
+        verbose_name = 'Связь между тестом и словом'
+        verbose_name_plural = 'Связи между тестами и словами'
+
+    def __str__(self):
+        return f'id теста - {self.test_id}, слово - {self.word}'
+
+    def get_absolute_url(self):
+        return reverse('tests/id=', kwargs={'test_id': self.test_id})

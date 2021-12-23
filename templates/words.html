@@ -2,10 +2,14 @@
 {% load static %}
 {% block title %}Слова{% endblock %}
 {% block content %}
-    <div class="col-4 content single-content end-content">
-    <span class="big-signs">{{ part_of_speech_topic.0|title }}</span>{{ part_of_speech_topic|slice:'1:' }}:<br>
-    {% for word in words %}
-        {{ word.word }}<br>
-    {% endfor %}
+    <div class="col-4">
+        <div class="row">
+            <div class="col content single-content end-content">
+                <span class="big-signs">{{ part_of_speech_topic.0|title }}</span>{{ part_of_speech_topic|slice:'1:' }}:<br>
+                {% for word in words %}
+                    {{ word.word }}<br>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 {% endblock %}

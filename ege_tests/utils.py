@@ -1,4 +1,6 @@
-from .models import WordFromDictionary
+from django.core.exceptions import ObjectDoesNotExist
+
+from .models import *
 
 
 parts_of_speech_en = ['noun', 'adjective', 'verb', 'participle', 'gerunds', 'adverb']
@@ -13,6 +15,8 @@ def get_part_of_speech_ru_plural(p):
 def get_random_test(number_of_required=10):
     """Возвращает слова для случайного теста для API"""
     words = WordFromDictionary.objects.random(number_of_required)
+    if len(set(words)) != number_of_required:
+        return get_random_test(number_of_required)
     words_api = dict()
     index = 0
     for word in words:
@@ -26,3 +30,11 @@ def get_random_test(number_of_required=10):
         words_api[index] = {'possible_values': possible_values, 'correct_value': correct_value}
         index += 1
     return words_api
+
+
+def check_test_for_existence(test_id):
+    try:
+        ConnectionTestAndWord.objects.get(test_id=test_id)
+        return 200
+    except ObjectDoesNotExist:
+        return 204

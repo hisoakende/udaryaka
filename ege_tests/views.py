@@ -12,11 +12,22 @@ class Homepage(TemplateView):
     template_name = 'homepage.html'
 
 
+def f(request, test_id):
+    return HttpResponse(f'{test_id}')
+
+
 class RandomTestAPI(APIView):
     """Обработка запроса на получение слов для случайного теста"""
 
     def get(self, request):
         return Response(get_random_test())
+
+
+class CheckTestForExistence(APIView):
+    """Проверка теста на существование"""
+
+    def get(self, request, test_id):
+        return Response(status=check_test_for_existence(test_id))
 
 
 class AllWordsByPartOfSpeech(ListView):
@@ -33,7 +44,6 @@ class AllWordsByPartOfSpeech(ListView):
 
     def get_queryset(self):
         words = WordFromDictionary.objects.filter(part_of_speech=self.kwargs['part_of_speech'])
-        print(get_random_test())
         for x in words:
             index = x.accented_character - 1
             x.word = x.word[:index] + x.word[index].upper() + x.word[index + 1:]

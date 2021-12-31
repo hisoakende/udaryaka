@@ -26,8 +26,12 @@ class ConnectionTestAndWordTestCase(TestCase):
             accented_character=4,
             part_of_speech='noun'
         )
-        ConnectionTestAndWord.objects.create(
+        UsersTest.objects.create(
             test_id=1,
+            type_test='open'
+        )
+        ConnectionTestAndWord.objects.create(
+            test=UsersTest.objects.get(test_id=1),
             word=WordFromDictionary.objects.get(word='нога')
         )
 

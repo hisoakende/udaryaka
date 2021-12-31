@@ -38,7 +38,7 @@ class WordFromDictionary(models.Model):
 
 class ConnectionTestAndWord(models.Model):
     """Модель для привязки теста и слова для проверки ударения"""
-    test_id = models.IntegerField(verbose_name='id теста')
+    test = models.ForeignKey('UsersTest', verbose_name='Тест', on_delete=models.CASCADE, related_name='get_words')
     word = models.ForeignKey(WordFromDictionary, verbose_name='Слово для проверки', on_delete=models.CASCADE)
 
     class Meta:
@@ -51,3 +51,23 @@ class ConnectionTestAndWord(models.Model):
 
     def get_absolute_url(self):
         return reverse('tests/id=', kwargs={'test_id': self.test_id})
+
+
+class UsersTest(models.Model):
+    """Тест, созданный пользователем"""
+    TYPES = (
+        ('open', 'Открытый'),
+        ('private', 'Личный'),
+        ('friendly', 'Дружеский'),
+        ('teachers', 'Учительский')
+    )
+    test_id = models.IntegerField(verbose_name='id теста', unique=True)
+    type_test = models.CharField(verbose_name='Тип теста', max_length=12, choices=TYPES)
+
+    class Meta:
+        ordering = ['test_id']
+        verbose_name = 'Тест'
+        verbose_name_plural = 'Тесты'
+
+    def __str__(self):
+        return f'Тест - {self.test_id}'

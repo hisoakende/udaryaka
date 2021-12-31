@@ -12,15 +12,35 @@ class Homepage(TemplateView):
     template_name = 'homepage.html'
 
 
-def f(request, test_id):
-    return HttpResponse(f'{test_id}')
+class UsersTestPage(ListView):
+    """Отображение отдельного теста"""
+    template_name = 'page_with_test.html'
+    context_object_name = 'words'
+
+    def post(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+    def get_queryset(self):
+        words = get_test(self.kwargs['test_id'])
+        if self.request.method == 'POST':
+            user_answers = check_user_answers(self.kwargs['test_id'], self.request.POST)
+            words = added_incorrect_mark(words, user_answers)
+        return words
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(*args, **kwargs)
+        context['test_id'] = self.kwargs['test_id']
+        if self.request.method == 'POST':
+            context['correct_count'] = check_user_answers(self.kwargs['test_id'], self.request.POST)[1]
+        print(context)
+        return context
 
 
 class RandomTestAPI(APIView):
     """Обработка запроса на получение слов для случайного теста"""
 
     def get(self, request):
-        return Response(get_random_test())
+        return Response(get_test())
 
 
 class CheckTestForExistence(APIView):
@@ -33,7 +53,6 @@ class CheckTestForExistence(APIView):
 class AllWordsByPartOfSpeech(ListView):
     """Отоброжение всех слов или по конкретной части речи"""
     template_name = 'words.html'
-    model = WordFromDictionary
     context_object_name = 'words'
 
     def get(self, request, *args, **kwargs):

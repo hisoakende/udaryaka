@@ -62,3 +62,11 @@ hr {
 .incorrect-answer input + span:before {
     box-shadow: inset 0 0 0 0.27em #a44848 !important;
 }
+
+input:disabled + button {
+    cursor: default !important;
+}
+
+input:disabled + span {
+    cursor: default !important;
+}

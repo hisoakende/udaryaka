@@ -24,7 +24,7 @@ class AllWordsByPartOfSpeechTestCase(TestCase):
             WordFromDictionary.objects.create(
                 word=words_with_accented_character[word_index],
                 accented_character=accented_characters[word_index],
-                part_of_speech=parts_of_speech_en[word_index//2]
+                part_of_speech=parts_of_speech_en[word_index // 2]
             )
 
     def setUp(self):
@@ -55,3 +55,70 @@ class AllWordsByPartOfSpeechTestCase(TestCase):
             response = self.client.get(reverse('words_by_parts_of_speech', kwargs={'part_of_speech': arg}))
             part_of_speech_topic = get_part_of_speech_ru_plural(arg)
             self.assertEqual(part_of_speech_topic, response.context['part_of_speech_topic'])
+
+
+class UsersTestPageTestCase(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        WordFromDictionary.objects.create(
+            word='вероисповедание',
+            accented_character=10,
+            part_of_speech='noun'
+        )
+        WordFromDictionary.objects.create(
+            word='ждала',
+            accented_character=5,
+            part_of_speech='verb'
+        )
+        UsersTest.objects.create(
+            test_id=1,
+            type_test='open'
+        )
+        ConnectionTestAndWord.objects.create(
+            test=UsersTest.objects.get(test_id=1),
+            word=WordFromDictionary.objects.get(word='вероисповедание')
+        )
+        ConnectionTestAndWord.objects.create(
+            test=UsersTest.objects.get(test_id=1),
+            word=WordFromDictionary.objects.get(word='ждала')
+        )
+
+    def setUp(self):
+        self.view = UsersTestPage()
+        self.view.kwargs = {'test_id': 1}
+        self.get = RequestFactory().get(reverse('users_test', kwargs={'test_id': 1}))
+        self.post = RequestFactory().post(reverse('users_test', kwargs={'test_id': 1}),
+                                          data={'question-0': ['вероисповЕдание'], 'question-1': ['ждАла']})
+
+    def test_get_queryset_get(self):
+        self.view.request = self.get
+        qs_response = self.view.get_queryset()
+        expected_result = {0: {'possible_values': ['вЕроисповедание', 'верОисповедание', 'вероИсповедание',
+                                                   'вероиспОведание', 'вероисповЕдание', 'вероисповедАние',
+                                                   'вероисповеданИе', 'вероисповеданиЕ'],
+                               'correct_value': 4},
+                           1: {'possible_values': ['ждАла', 'ждалА'],
+                               'correct_value': 1}}
+        self.assertEqual(qs_response, expected_result)
+
+    def test_get_queryset_post(self):
+        self.view.request = self.post
+        qs_response = self.view.get_queryset()
+        expected_result = {0: {'possible_values': ['вЕроисповедание', 'верОисповедание', 'вероИсповедание',
+                                                   'вероиспОведание', 'вероисповЕдание', 'вероисповедАние',
+                                                   'вероисповеданИе', 'вероисповеданиЕ'],
+                               'correct_value': 4},
+                           1: {'possible_values': ['ждАла', 'ждалА'],
+                               'correct_value': 1,
+                               'user_incorrect_value': 0}}
+        self.assertEqual(qs_response, expected_result)
+
+    def test_get_context_data_get(self):
+        response = self.client.get(reverse('users_test', kwargs={'test_id': 1}))
+        self.assertEqual(response.context['test_id'], 1)
+
+    def test_get_context_data_post(self):
+        response = self.client.post(reverse('users_test', kwargs={'test_id': 1}),
+                                    data={'question-0': ['вероисповЕдание'], 'question-1': ['ждАла']})
+        self.assertEqual(response.context['correct_count'], '1/2')

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+    <link rel="stylesheet" href="{% static 'test_with_questions.css' %}">
+{% endblock %}
+{% block title %}Тест - {{ test_id }}{% endblock %}
+{% block content %}
+    <div class="col-4">
+        <div class="row">
+            <div class="col content start-content">
+                <span><span class="big-signs">Т</span>ест - <span class="test_id">{{ test_id }}</span></span>
+                <hr class="first-hr">
+                <span><span class="big-signs">В</span>ыберете верные ударения:</span>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for index, word in words.items %}
+                        <div class="question">
+                            {% for value in word.possible_values %}
+                                {% if correct_count %}
+                                    {% if forloop.counter0 == word.user_incorrect_value %}
+                                        <label class="question-label incorrect-answer">
+                                            <input type="radio" name="question-{{ index }}" value="{{ value }}"
+                                                   disabled>
+                                            <span>{{ value }}</span>
+                                        </label>
+                                    {% elif forloop.counter0 == word.correct_value %}
+                                        <label class="question-label">
+                                            <input type="radio" name="question-{{ index }}" value="{{ value }}" checked
+                                                   disabled>
+                                            <span>{{ value }}</span>
+                                        </label>
+                                    {% else %}
+                                        <label class="question-label">
+                                            <input type="radio" name="question-{{ index }}" value="{{ value }}"
+                                                   disabled>
+                                            <span>{{ value }}</span>
+                                        </label>
+                                    {% endif %}
+                                {% else %}
+                                    <label class="question-label">
+                                        <input type="radio" name="question-{{ index }}" value="{{ value }}">
+                                        <span>{{ value }}</span>
+                                    </label>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        {% if not forloop.last %}
+                            <hr>
+                        {% endif %}
+                    {% endfor %}
+                    {% if correct_count %}
+                        <button type="submit" class="btn btn-outline-secondary" id="check-answers" disabled>
+                            Проверить ответы!
+                        </button>
+                    {% else %}
+                        <button type="submit" class="btn btn-outline-secondary" id="check-answers">
+                            Проверить ответы!
+                        </button>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+        <div class="row align-center">
+            <div class="col content end-content">
+                <span class="big-signs display-block">Результат</span>
+                {% if correct_count %}
+                    <span class="result">{{ correct_count }}</span>
+                {% else %}
+                    <span class="result">Ты еще не прошел тест!</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

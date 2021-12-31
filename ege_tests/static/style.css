@@ -128,3 +128,7 @@ li a:hover {
 #test-id:focus {
     border-color: #52796f;
 }
+
+.first-hr {
+    margin: 7px 0 7px 0;
+}

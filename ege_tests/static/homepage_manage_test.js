@@ -75,7 +75,6 @@ btn_start_test.addEventListener('click', start_test, once = true);
 function view_correct(incorrect_answers) {
     document.querySelectorAll('.question label input').forEach(element => {
         element.disabled = true;
-        element.parentElement.style.cursor = 'default';
         for (let answer of incorrect_answers) {
             if (answer === element.value) {
                 element.parentElement.classList.add('incorrect-answer');

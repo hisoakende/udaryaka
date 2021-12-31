@@ -1,8 +1,9 @@
-{% extends 'base_template.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block title %}Главная страница{% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'test_with_questions.css' %}">{% endblock %}
+    <link rel="stylesheet" href="{% static 'test_with_questions.css' %}">
+{% endblock %}
 {% block content %}
     <div class="col-4">
         <div class="row">

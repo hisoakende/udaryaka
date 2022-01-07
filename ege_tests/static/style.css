@@ -52,19 +52,23 @@ button:focus, button:active {
 
 .parts-of-speech {
     text-align: center;
-    border-radius: 15px;
     padding-bottom: 0 !important;
 }
 
 ul {
     text-align: left;
+    padding-left: 19px;
 }
 
-li {
+ul li {
     color: #52796f;
 }
 
 li a {
+    color: black !important;
+}
+
+li span {
     color: black !important;
 }
 
@@ -125,10 +129,14 @@ li a:hover {
     color: #52796f;
 }
 
-#test-id:focus {
+.enter-inf:focus {
     border-color: #52796f;
 }
 
 .first-hr {
     margin: 7px 0 7px 0;
+}
+
+.btn-registration {
+    margin: 0 !important;
 }

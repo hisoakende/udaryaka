@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Регистрация{% endblock %}
 {% block content %}
-<div class="col-3">
-    <div class="row">
-        <div class="col content start-content align-center">
-            <span><span class="big-signs">Р</span>егистрация</span>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit">
-            </form>
+    <div class="col-3">
+        <div class="row">
+            <div class="col content single-content align-center">
+                <span><span class="big-signs">Р</span>егистрация</span>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for f in form %}
+                        <p>{{ f }}</p>
+                        <ul>
+                            {% for e in f.errors%}
+                                <li><span>{{ e }}</span></li>
+                            {% endfor %}
+                        </ul>
+                    {% endfor %}
+                    <button type="submit" class="btn btn-outline-secondary btn-registration" id="find-test">
+                        Зарегистрироваться!
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

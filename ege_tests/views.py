@@ -9,12 +9,12 @@ from ege_tests.utils import *
 
 class Homepage(TemplateView):
     """Отображение главной страницы"""
-    template_name = 'homepage.html'
+    template_name = 'templates_for_all_about_words/homepage.html'
 
 
 class UsersTestPage(ListView):
     """Отображение отдельного теста"""
-    template_name = 'page_with_test.html'
+    template_name = 'templates_for_all_about_words/page_with_test.html'
     context_object_name = 'words'
 
     def post(self, request, *args, **kwargs):
@@ -32,7 +32,6 @@ class UsersTestPage(ListView):
         context['test_id'] = self.kwargs['test_id']
         if self.request.method == 'POST':
             context['correct_count'] = check_user_answers(self.kwargs['test_id'], self.request.POST)[1]
-        print(context)
         return context
 
 
@@ -52,7 +51,7 @@ class CheckTestForExistence(APIView):
 
 class AllWordsByPartOfSpeech(ListView):
     """Отоброжение всех слов или по конкретной части речи"""
-    template_name = 'words.html'
+    template_name = 'templates_for_all_about_words/words.html'
     context_object_name = 'words'
 
     def get(self, request, *args, **kwargs):

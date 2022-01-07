@@ -24,23 +24,25 @@
 </nav>
 <div class="row main-part">
     <div class="col">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col-5 content parts-of-speech">
+        {% if 'manage-user' not in request.path %}
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-5 content parts-of-speech">
                 <span>
                     <span class="big-signs">С</span>
                     лова по частям речи:
                 </span>
-                <ul>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'noun' %}">Имя сущесвтительное</a></li>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'adjective' %}">Имя прилагательное</a></li>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'verb' %}">Глагол</a></li>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'participle' %}">Причастие</a></li>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'gerunds' %}">Деепричастие</a></li>
-                    <li><a href="{% url 'words_by_parts_of_speech' 'adverb' %}">Наречие</a></li>
-                </ul>
+                    <ul>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'noun' %}">Имя сущесвтительное</a></li>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'adjective' %}">Имя прилагательное</a></li>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'verb' %}">Глагол</a></li>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'participle' %}">Причастие</a></li>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'gerunds' %}">Деепричастие</a></li>
+                        <li><a href="{% url 'words_by_parts_of_speech' 'adverb' %}">Наречие</a></li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        {% endif %}
     </div>
     {% block content %}{% endblock %}
     <div class="col"></div>

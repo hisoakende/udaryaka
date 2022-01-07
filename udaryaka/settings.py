@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 
-    'ege_tests'
+    'ege_tests',
+    'manage_user'
 ]
 
 MIDDLEWARE = [

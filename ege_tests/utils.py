@@ -18,7 +18,7 @@ def get_test(test_id=False, number_of_required=10):
     else:
         words = WordFromDictionary.objects.random(number_of_required)
         if len(set(words)) != number_of_required:
-            return get_test(number_of_required)
+            return get_test(number_of_required=number_of_required)
     return parsed_words(words)
 
 

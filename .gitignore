@@ -1,0 +1,8 @@
+venv
+.idea
+__pycache__
+udaryaka/__pycache__
+ege_tests/__pycache__
+manage_user/__pycache__
+ege_tests/migrations
+manage_user/migrations

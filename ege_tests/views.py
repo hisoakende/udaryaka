@@ -3,7 +3,6 @@ from django.views.generic import TemplateView, ListView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ege_tests.models import WordFromDictionary
 from ege_tests.utils import *
 
 
@@ -23,7 +22,7 @@ class UsersTestPage(ListView):
     def get_queryset(self):
         words = get_test(self.kwargs['test_id'])
         if self.request.method == 'POST':
-            user_answers = check_user_answers(self.kwargs['test_id'], self.request.POST)
+            user_answers = check_user_answers(self.kwargs['test_id'], self.request.POST)[0]
             words = added_incorrect_mark(words, user_answers)
         return words
 

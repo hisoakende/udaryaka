@@ -38,7 +38,7 @@ class WordFromDictionary(models.Model):
 
 class ConnectionTestAndWord(models.Model):
     """Модель для привязки теста и слова для проверки ударения"""
-    test = models.ForeignKey('UsersTest', verbose_name='Тест', on_delete=models.CASCADE, related_name='get_words')
+    test = models.ForeignKey('UsersTest', verbose_name='Тест', on_delete=models.CASCADE, related_name='c_words')
     word = models.ForeignKey(WordFromDictionary, verbose_name='Слово для проверки', on_delete=models.CASCADE)
 
     class Meta:

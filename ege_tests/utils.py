@@ -1,5 +1,3 @@
-from django.core.exceptions import ObjectDoesNotExist
-
 from .models import *
 
 parts_of_speech_en = ['noun', 'adjective', 'verb', 'participle', 'gerunds', 'adverb']
@@ -14,7 +12,9 @@ def get_part_of_speech_ru_plural(p):
 def get_test(test_id=False, number_of_required=10):
     """Возвращает тест - случайный или существующий"""
     if test_id:
-        words = [x.word for x in UsersTest.objects.get(test_id=test_id).get_words.all()]
+        test = UsersTest.objects.get(test_id=test_id)
+        c_words = ConnectionTestAndWord.objects.select_related('word').filter(test=test)
+        words = [x.word for x in c_words]
     else:
         words = WordFromDictionary.objects.random(number_of_required)
         if len(set(words)) != number_of_required:
@@ -60,9 +60,9 @@ def check_user_answers(test_id, data_request):
 def added_incorrect_mark(words, user_answers):
     """Добавление пометки об неправильном ответе пользователя"""
     for i in range(len(words)):
-        if user_answers[0][i][1]:
+        if user_answers[i][1]:
             continue
         for value in words[i]['possible_values']:
-            if value == user_answers[0][i][0]:
+            if value == user_answers[i][0]:
                 words[i]['user_incorrect_value'] = words[i]['possible_values'].index(value)
     return words

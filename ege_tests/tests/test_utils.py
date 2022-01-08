@@ -149,5 +149,5 @@ class AddedIncorrectMarkTestCase(TestCase):
                      'correct_value': 4},
                  1: {'possible_values': ['ждАла', 'ждалА'],
                      'correct_value': 1}}
-        user_answers = ([('вЕроисповедание', False), ('ждАла', False)], '0/2')
+        user_answers = [('вЕроисповедание', False), ('ждАла', False)]
         self.assertEqual(added_incorrect_mark(words, user_answers), expected_result)

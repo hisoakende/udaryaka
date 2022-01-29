@@ -27,4 +27,5 @@ class RegistrationForm(UserCreationForm):
             User.objects.get(email=email)
         except ObjectDoesNotExist:
             return email
-        raise ValidationError('Пользователь с такой электронной почтой уже существует.')
+        else:
+            raise ValidationError('Пользователь с такой электронной почтой уже существует.')

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Успешная регистрация!{% endblock %}
+{% block content %}
+    <div class="col-3">
+        <div class="row">
+            <div class="col content single-content align-center">
+                <span>
+                    <span class="big-signs">У</span>спешная регистрация!<br> Перенаправление на главную страницу через:
+                    <span class="redirect-timer">5</span>
+                </span>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'successful_registration.js' %}"></script>
+{% endblock %}

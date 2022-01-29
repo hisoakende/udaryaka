@@ -138,3 +138,12 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+SESSION_SAVE_EVERY_REQUEST = True
+
+DEFAULT_FROM_EMAIL = 'supwithyourblogs@gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_HOST_USER = 'supwithyourblogs@gmail.com'
+EMAIL_HOST_PASSWORD = 'supwithyourblogs111'
+EMAIL_PORT = 587

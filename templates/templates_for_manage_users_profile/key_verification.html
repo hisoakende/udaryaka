@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Регистрация{% endblock %}
+{% block content %}
+    <div class="col-3">
+        <div class="row">
+            <div class="col content single-content align-center">
+                <p></p>
+                <form method="post">
+                    {% csrf_token %}
+                    <p><input type="number" class="form-control shadow-none enter-inf" name="key"
+                              placeholder="Код, отправленный на Ваш email"></p>
+                    {% if error_message %}
+                        <ul><li><span>{{ error_message }}</span></li></ul>
+                    {% endif %}
+                    <button type="submit" class="btn btn-outline-secondary btn-registration">
+                        Зарегистрироваться!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -26,11 +26,9 @@ class AllWordsByPartOfSpeechTestCase(TestCase):
                 accented_character=accented_characters[word_index],
                 part_of_speech=parts_of_speech_en[word_index // 2]
             )
-
-    def setUp(self):
-        self.view = AllWordsByPartOfSpeech()
-        self.correct_args_to_request = parts_of_speech_en
-        self.uncorrect_args_to_request = ['123', 'abc', '---']
+        cls.view = AllWordsByPartOfSpeech()
+        cls.correct_args_to_request = parts_of_speech_en
+        cls.uncorrect_args_to_request = ['123', 'abc', '---']
 
     def test_view_url_exists_at_desired_location(self):
         for c_arg in self.correct_args_to_request:
@@ -84,12 +82,11 @@ class UsersTestPageTestCase(TestCase):
             word=WordFromDictionary.objects.get(word='ждала')
         )
 
-    def setUp(self):
-        self.view = UsersTestPage()
-        self.view.kwargs = {'test_id': 1}
-        self.get = RequestFactory().get(reverse('users_test', kwargs={'test_id': 1}))
-        self.post = RequestFactory().post(reverse('users_test', kwargs={'test_id': 1}),
-                                          data={'question-0': ['вероисповЕдание'], 'question-1': ['ждАла']})
+        cls.view = UsersTestPage()
+        cls.view.kwargs = {'test_id': 1}
+        cls.get = RequestFactory().get(reverse('users_test', kwargs={'test_id': 1}))
+        cls.post = RequestFactory().post(reverse('users_test', kwargs={'test_id': 1}),
+                                         data={'question-0': ['вероисповЕдание'], 'question-1': ['ждАла']})
 
     def test_get_queryset_get(self):
         self.view.request = self.get

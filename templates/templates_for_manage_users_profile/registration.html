@@ -4,13 +4,13 @@
     <div class="col-3">
         <div class="row">
             <div class="col content single-content align-center">
-                <span><span class="big-signs">Р</span>егистрация</span>
+            <p></p>
                 <form method="post">
                     {% csrf_token %}
                     {% for f in form %}
                         <p>{{ f }}</p>
                         <ul>
-                            {% for e in f.errors%}
+                            {% for e in f.errors %}
                                 <li><span>{{ e }}</span></li>
                             {% endfor %}
                         </ul>

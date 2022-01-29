@@ -23,12 +23,10 @@ class GetTestTestCase(TestCase):
         cls.expected_result = {0: {'possible_values': ['зЕмля', 'землЯ'], 'correct_value': 1}}
 
     def test_get_random_test(self):
-        result = get_test(1)
-        self.assertEqual(result, self.expected_result)
+        self.assertEqual(get_test(1), self.expected_result)
 
     def test_get_not_random_test(self):
-        result = get_test(test_id=1)
-        self.assertEqual(result, self.expected_result)
+        self.assertEqual(get_test(test_id=1), self.expected_result)
 
 
 class ParsedWordsTestCase(TestCase):
@@ -66,12 +64,10 @@ class CheckTestForExistenceTestCase(TestCase):
         )
 
     def test_test_is_existence(self):
-        res = check_test_for_existence(1)
-        self.assertEqual(res, 200)
+        self.assertEqual(check_test_for_existence(1), 200)
 
     def test_test_is_not_existence(self):
-        res = check_test_for_existence(2)
-        self.assertEqual(res, 204)
+        self.assertEqual(check_test_for_existence(2), 204)
 
 
 class CheckUserAnswersTestCase(TestCase):

@@ -26,8 +26,8 @@ class UsersTestPage(ListView):
             words = added_incorrect_mark(words, user_answers)
         return words
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['test_id'] = self.kwargs['test_id']
         if self.request.method == 'POST':
             context['correct_count'] = check_user_answers(self.kwargs['test_id'], self.request.POST)[1]
@@ -66,7 +66,7 @@ class AllWordsByPartOfSpeech(ListView):
             x.word = x.word[:index] + x.word[index].upper() + x.word[index + 1:]
         return words
 
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(*args, **kwargs)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         context['part_of_speech_topic'] = get_part_of_speech_ru_plural(self.kwargs['part_of_speech'])
         return context

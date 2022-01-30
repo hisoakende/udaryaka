@@ -24,7 +24,7 @@
                     {% if user_is_authenticated %}
                         <a href="">Создать тест!</a>
                     {% else %}
-                        Чтобы создать тест, нужно <a class="a-authenticated" href="">войти</a>
+                        Чтобы создать тест, нужно <a class="a-authenticated" href="{% url 'login' %}">войти</a>
                     {% endif %}
                 </span>
             </div>

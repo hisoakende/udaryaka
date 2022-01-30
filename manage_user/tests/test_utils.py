@@ -12,7 +12,7 @@ class UserActivationTestCase(TestCase):
 
     def test_user_activation(self):
         user_activation('user')
-        self.assertTrue(User.objects.get(username='user').profile.is_active)
+        self.assertTrue(User.objects.get(username='user').is_active)
 
 
 class GetMessageTextTestCase(TestCase):

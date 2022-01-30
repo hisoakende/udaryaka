@@ -9,7 +9,7 @@ class KeyVerificationTestCase(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        User.objects.create_user('user', 'user')
+        User.objects.create_user('user')
 
     def setUp(self):
         session = self.client.session

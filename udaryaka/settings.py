@@ -141,6 +141,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 SESSION_SAVE_EVERY_REQUEST = True
 
+LOGIN_REDIRECT_URL = '/'
+
 DEFAULT_FROM_EMAIL = 'supwithyourblogs@gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.googlemail.com'

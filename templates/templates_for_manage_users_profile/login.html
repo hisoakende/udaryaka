@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Авторизация{% endblock %}
+{% block content %}
+    <div class="col-3">
+        <div class="row">
+            <div class="col content single-content">
+                <p></p>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for f in form %}
+                        <p>{{ f }}</p>
+                    {% endfor %}
+                    {% if form.non_field_errors %}
+                        <ul>
+                            <li><span>Что-то неверно: псевдоним, электронная почта или пароль.</span></li>
+                        </ul>
+                    {% endif %}
+                    <button type="submit" class="btn btn-outline-secondary btn-registration" id="find-test">
+                        Войти!
+                    </button>
+                </form>
+                <div class="align-center link-registration">
+                    Нет аккаунта? <a class="a-authenticated" href="{% url 'registration' %}">Зарегистрируйся!</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

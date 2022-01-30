@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 
@@ -29,3 +29,12 @@ class RegistrationForm(UserCreationForm):
             return email
         else:
             raise ValidationError('Пользователь с такой электронной почтой уже существует.')
+
+
+class LoginUserForm(AuthenticationForm):
+    """Форма авторизации"""
+    username = forms.CharField(label='', widget=forms.TextInput(
+        attrs={'class': attr_class, 'placeholder': 'Псевдоним или Электронная почта'}))
+    password = forms.CharField(label='', widget=forms.PasswordInput(
+        attrs={'class': attr_class, 'placeholder': 'Пароль'}))
+

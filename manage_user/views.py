@@ -4,16 +4,17 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, TemplateView
 
-from manage_user.forms import RegistrationForm
+from manage_user.forms import RegistrationForm, LoginUserForm
 from manage_user.utils import get_message_text, user_activation
 
 
-class SuccessfulRegistration(TemplateView):
+class SuccessfulRegistration(UserPassesTestMixin, TemplateView):
     """Представление страницы успешной регистрации"""
     template_name = 'templates_for_manage_users_profile/successful_registration.html'
 
@@ -49,12 +50,15 @@ class KeyVerification(UserPassesTestMixin, TemplateView):
         return context
 
 
-class Registration(CreateView):
+class Registration(UserPassesTestMixin, CreateView):
     """Регистрация нового пользователя"""
     template_name = 'templates_for_manage_users_profile/registration.html'
     success_url = reverse_lazy('key_verification')
     form_class = RegistrationForm
     model = User
+
+    def test_func(self):
+        return not self.request.user.is_authenticated
 
     def post(self, request, *args, **kwargs):
         if self.get_form().is_valid():
@@ -65,3 +69,13 @@ class Registration(CreateView):
                       [request.POST['email']], fail_silently=False)
             request.session['user'] = {'username': request.POST['username'], 'key': key}
         return super().post(request, *args, **kwargs)
+
+
+class LoginUser(UserPassesTestMixin, LoginView):
+    """Авторизация пользователя"""
+    template_name = 'templates_for_manage_users_profile/login.html'
+    redirect_field_name = reverse_lazy('homepage')
+    form_class = LoginUserForm
+
+    def test_func(self):
+        return not self.request.user.is_authenticated

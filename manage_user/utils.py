@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 def user_activation(username):
     """Активация пользователя"""
     user = User.objects.get(username=username)
-    user.profile.is_active = True
-    user.profile.save()
+    user.is_active = True
+    user.save()
 
 
 def get_message_text(type_message, **kwargs):

@@ -41,7 +41,7 @@ class RandomTestAPI(APIView):
         return Response(get_test())
 
 
-class CheckTestForExistence(APIView):
+class CheckTestForExistenceAPI(APIView):
     """Проверка теста на существование"""
 
     def get(self, request, test_id):

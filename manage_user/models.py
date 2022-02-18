@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 @receiver(post_save, sender=User)
 def created_user_profile(**kwargs):
-    """Создание или обновление профиль пользователя"""
+    """Деактивация пользователя для подтверждения email"""
     if kwargs['created']:
         kwargs['instance'].is_active = False
         kwargs['instance'].save()

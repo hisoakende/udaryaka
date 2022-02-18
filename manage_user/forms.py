@@ -28,7 +28,7 @@ class RegistrationForm(UserCreationForm):
         except ObjectDoesNotExist:
             return email
         else:
-            raise ValidationError('Пользователь с такой электронной почтой уже существует.')
+            raise ValidationError('Пользователь с такой электронной почтой уже существует.', code='existing_email')
 
 
 class LoginUserForm(AuthenticationForm):
@@ -37,4 +37,10 @@ class LoginUserForm(AuthenticationForm):
         attrs={'class': attr_class, 'placeholder': 'Псевдоним или Электронная почта'}))
     password = forms.CharField(label='', widget=forms.PasswordInput(
         attrs={'class': attr_class, 'placeholder': 'Пароль'}))
+    error_messages = {
+        'invalid_login_or_email': 'Что-то неверно: псевдоним, электронная почта или пароль.',
+        'inactive': 'Ты зарегистрирован не до конца.'
+    }
 
+    def get_invalid_login_error(self):
+        return ValidationError(self.error_messages['invalid_login_or_email'], code='invalid_login_or_email')

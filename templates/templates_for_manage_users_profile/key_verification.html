@@ -8,12 +8,12 @@
                 <form method="post">
                     {% csrf_token %}
                     <p><input type="number" class="form-control shadow-none enter-inf" name="key"
-                              placeholder="Код, отправленный на Ваш email"></p>
+                              placeholder="Код, отправленный на {{ hidden_email }}"></p>
                     {% if error_message %}
                         <ul><li><span>{{ error_message }}</span></li></ul>
                     {% endif %}
                     <button type="submit" class="btn btn-outline-secondary btn-registration">
-                        Зарегистрироваться!
+                        Завершить регистрацию!
                     </button>
                 </form>
             </div>

@@ -144,3 +144,8 @@ li a:hover {
 .link-registration {
     margin-top: 8px;
 }
+
+.a-authenticated-important {
+    color: #52796f !important;
+    cursor: pointer;
+}

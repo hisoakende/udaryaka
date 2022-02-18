@@ -20,11 +20,12 @@
                 <span>
                     <span class="big-signs">У</span>
                     тебя есть возможность создать собственный тест по ударениям, состоящий из любого количества слов.
-                    Слова ты можешь использовать либо собственные, либо из нашего каталога!
-                    {% if user_is_authenticated %}
-                        <a href="">Создать тест!</a>
+                    Слова ты можешь использовать либо собственные, либо из нашего каталога! Чтобы создать тест,
+                    {% if user.is_authenticated %}
+                        кликни
+                        <a class="a-authenticated" href="">сюда</a>
                     {% else %}
-                        Чтобы создать тест, нужно <a class="a-authenticated" href="{% url 'login' %}">войти</a>
+                        нужно <a class="a-authenticated" href="{% url 'login' %}">войти</a>
                     {% endif %}
                 </span>
             </div>

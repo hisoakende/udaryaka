@@ -1,8 +1,6 @@
 from django.contrib.auth.models import User
-from django.test import TestCase, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
-
-from ..views import KeyVerification
 
 
 class KeyVerificationTestCase(TestCase):
@@ -13,15 +11,8 @@ class KeyVerificationTestCase(TestCase):
 
     def setUp(self):
         session = self.client.session
-        session['user'] = {'username': 'user', 'key': 1}
+        session['user_activation'] = {'username': 'user', 'email': 'example@gmail.com', 'key': 1}
         session.save()
-
-    def test_get_context_data_with_error(self):
-        self.view = KeyVerification()
-        self.get = RequestFactory().get(reverse('key_verification'))
-        self.view.request = self.get
-        result = self.view.get_context_data(error=True)
-        self.assertIn('error', result)
 
     def test_correct_key_verification_redirect(self):
         response = self.client.post(reverse('key_verification'), data={'key': 1})

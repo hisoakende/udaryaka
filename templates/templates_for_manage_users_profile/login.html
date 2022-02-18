@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Авторизация{% endblock %}
 {% block content %}
     <div class="col-3">
@@ -12,7 +13,17 @@
                     {% endfor %}
                     {% if form.non_field_errors %}
                         <ul>
-                            <li><span>Что-то неверно: псевдоним, электронная почта или пароль.</span></li>
+                            {% if form.non_field_errors.as_data.0.code == 'inactive' %}
+                                <li>
+                                    <span>
+                                        {{ form.non_field_errors.0 }} Чтобы завершить регистрацию, нужно
+                                        подтвердить электронную почту. Это можно сделать, нажав
+                                    </span>
+                                    <a class="a-authenticated-important">сюда</a>.
+                                </li>
+                            {% else %}
+                                <li><span>{{ form.non_field_errors.0 }}</span></li>
+                            {% endif %}
                         </ul>
                     {% endif %}
                     <button type="submit" class="btn btn-outline-secondary btn-registration" id="find-test">
@@ -25,4 +36,7 @@
             </div>
         </div>
     </div>
+{% endblock %}
+{% block js %}
+    <script src="{% static 'activate_user_redirect.js'%}"></script>
 {% endblock %}
